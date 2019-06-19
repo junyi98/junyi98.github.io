@@ -80,7 +80,7 @@
                 <div class="col-lg-6 mb-4">
                   <h1  data-aos="fade-up" data-aos-delay="100">Recycling E-waste Bit by Bit</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">To promote technology education among secondary school students and getting KDUUC students involved in corporate social responsibility programmes.</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Get Started</a></p>
+                  <p data-aos="fade-up" data-aos-delay="300" data-target="#exampleModal" data-toggle="modal" ><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Request Pickup</a></p>
 
                 </div>
               </div>
@@ -90,8 +90,186 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Request Pickup</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form name="modalform">
+              <div class="form-group">
+                  <label for="firstname" class="col-form-label">First Name:</label>
+                  <input type="text" class="form-control" id="firstname">
+              </div>
 
+              <div class="form-group">
+                  <label for="lastname" class="col-form-label">Last name:</label>
+                  <input class="form-control" id="lastname">
+              </div>
+
+              <div class="form-group">
+                <label for="street" class="col-form-label">Street:</label>
+                <input type="text" class="form-control" id="street">
+              </div>
+
+              <div class="form-group">
+                <label for="city" class="col-form-label">City:</label>
+                <input class="form-control" id="city">
+              </div>
+
+              <div class="form-group">
+                  <label for="state" class="col-form-label">State/Province:</label>
+                  <select type="text" class="form-control" id="state">
+                    <option>Selangor</option>
+                    <option>Kuala Lumpur</option>
+                    <option>Sarawak</option>
+                    <option>Johor</option>
+                    <option>Penang</option>
+                    <option>Sabah</option>
+                    <option>Perak</option>
+                    <option>Pahang</option>
+                    <option>Negeri Sembilan</option>
+                    <option>Kedah</option>
+                    <option>Malacca</option>
+                    <option>Terrengganu</option>
+                    <option>Kelantan</option>
+                    <option>Labuan</option>
+                    <option>Perlis</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                  <label for="zip" class="col-form-label">Zip/Postal Code:</label>
+                  <input class="form-control" id="zip">
+              </div>
+
+              <div class="form-group">
+                  <label for="email" class="col-form-label">Email Address:</label>
+                  <input type="text" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                  <label for="phonenum" class="col-form-label">Phone Number:</label>
+                  <input class="form-control" id="phonenum">
+              </div>
+
+                <div class="form-group">
+                    <label for="list" class="col-form-label">List The Type and Quantity Of The Item You Wish To Donate:</label>
+                    <input type="text" class="form-control" id="list">
+                </div>
+                <div class="form-group">
+                    <label for="pickup" class="col-form-label">I Would Like To:</label>
+                    <input type="text" class="form-control" id="pickup">
+                </div>
+
+                <div class="form-group">
+                      <label for="special" class="col-form-label">Question or Special Requests:</label>
+                      <input type="text" class="form-control" id="special">
+                </div>
+
+                <div class="checkbox">
+                      <label for="esign" class="col-form-label">Email Sign up</label>
+                      <label><input type="checkbox" id="esign">Yes, I'd like to subscribe to our monthly email newsletter.</label>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="modalfunc()">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
+    <script>
+        function modalfunc(){
+          var fname = document.forms["modalform"]["firstname"];               
+          var lname = document.forms["modalform"]["lastname"];
+          var street = document.forms["modalform"]["street"]; 
+          var states = document.forms["modalform"]["state"];       
+          var phone = document.forms["modalform"]["phonenum"]; 
+          var city = document.forms["modalform"]["city"];     
+          var email =  document.forms["modalform"]["email"];  
+          var zip = document.forms["modalform"]["zip"];     
+     
+          if (fname.value == "")                                  
+          { 
+              window.alert("Please enter your first name."); 
+              name.focus(); 
+              return false; 
+          } 
+        
+          if (lname.value == "")                               
+          { 
+              window.alert("Please enter your last name."); 
+              name.focus(); 
+              return false; 
+          } 
+          
+          if (street.value == "")
+          {
+              window.alert("Please enter your street"); 
+              position.focus(); 
+              return false; 
+          }
+
+          if (city.value == "")                        
+          { 
+              window.alert("Please enter your city"); 
+              position.focus(); 
+              return false; 
+          } 
+
+          if (states.value == "")                        
+          { 
+              window.alert("Please enter your state"); 
+              position.focus(); 
+              return false; 
+          }           
+
+          if (zip.value == "")
+          {
+              window.alert("Please enter your zip code"); 
+              position.focus(); 
+              return false; 
+          }
+  
+          if (email.value == "")                                   
+          { 
+              window.alert("Please enter a valid e-mail address."); 
+              email.focus(); 
+              return false; 
+          } 
+        
+          if (email.value.indexOf("@", 0) < 0)                 
+          { 
+              window.alert("Please enter a valid e-mail address."); 
+              email.focus(); 
+              return false; 
+          } 
+        
+          if (email.value.indexOf(".", 0) < 0)                 
+          { 
+              window.alert("Please enter a valid e-mail address."); 
+              email.focus(); 
+              return false; 
+          } 
+        
+          if (phone.value == "")                           
+          { 
+              window.alert("Please enter your telephone number."); 
+              phone.focus(); 
+              return false; 
+          } 
+          
+          alert("Message Send")
+          return true;
+        }
+      </script>
+
     <div class="site-section courses-title" id="courses-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
