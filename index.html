@@ -171,7 +171,7 @@
                 </div>
 
                 <div class="checkbox">
-                      <label for="esign" class="col-form-label">Email Sign up</label>
+                      <label for="esign" class="col-form-label">Email notification subscription</label>
                       <label><input type="checkbox" id="esign">Yes, I'd like to subscribe to our monthly email newsletter.</label>
                 </div>
             </form>
@@ -193,7 +193,11 @@
           var phone = document.forms["modalform"]["phonenum"]; 
           var city = document.forms["modalform"]["city"];     
           var email =  document.forms["modalform"]["email"];  
-          var zip = document.forms["modalform"]["zip"];     
+          var zip = document.forms["modalform"]["zip"];
+          var list = document.forms["modalform"]["list"];
+          var special = document.forms["modalform"]["special"];
+          var notification = document.forms["modalform"]["esign"]; 
+          var pick = document.forms["modalform"]["pickup"];     
      
           if (fname.value == "")                                  
           { 
@@ -230,9 +234,20 @@
               return false; 
           }           
 
+
+          var zipcode = /^\d{4}$/;
           if (zip.value == "")
           {
               window.alert("Please enter your zip code"); 
+              position.focus(); 
+              return false; 
+          }
+
+          if (zip.value.match(zipcode))
+          {
+            
+          }else{
+              window.alert("Please enter a valid zip code"); 
               position.focus(); 
               return false; 
           }
@@ -265,6 +280,19 @@
               return false; 
           } 
           
+          fname.value = "";
+          lname.value = "";
+          street.value = "";
+          states.value = "";
+          phone.value = "";
+          city.value = "";
+          email.value = "";
+          zip.value = "";
+          phone.value = "";
+          list.value = "";
+          special.value = "";
+          notification.checked = false;
+          pick.value = "";
           alert("Message Send")
           return true;
         }
@@ -659,12 +687,21 @@
             return false; 
         } 
         
+        var phonenumber = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (phone.value == "")                           
         { 
-            window.alert("Please enter your telephone number."); 
+            window.alert("Please enter your phone number."); 
             phone.focus(); 
             return false; 
         } 
+
+        if (phone.value.match(phonenumber)){
+          return true;
+        }else{
+          window.alert("Please enter a valid phone numner.");
+          phone.focus();
+          return false;
+        }
 
         if (email.value == "")                                   
         { 
