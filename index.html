@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
     
-    
+    <script src="https://kit.fontawesome.com/d80b48a23b.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -102,13 +107,8 @@
           <div class="modal-body">
             <form name="modalform">
               <div class="form-group">
-                  <label for="firstname" class="col-form-label">First Name:</label>
-                  <input type="text" class="form-control" id="firstname">
-              </div>
-
-              <div class="form-group">
-                  <label for="lastname" class="col-form-label">Last name:</label>
-                  <input class="form-control" id="lastname">
+                  <label for="fullname" class="col-form-label">Full Name:</label>
+                  <input type="text" class="form-control" id="fullname">
               </div>
 
               <div class="form-group">
@@ -157,23 +157,26 @@
               </div>
 
                 <div class="form-group">
-                    <label for="list" class="col-form-label">List The Type and Quantity Of The Item You Wish To Donate:</label>
+                    <label for="list" class="col-form-label">List The Quantity Of Items You Wish To Donate:</label>
                     <input type="text" class="form-control" id="list">
                 </div>
-                <div class="form-group">
-                    <label for="pickup" class="col-form-label">I Would Like To:</label>
-                    <input type="text" class="form-control" id="pickup">
-                </div>
 
                 <div class="form-group">
-                      <label for="special" class="col-form-label">Question or Special Requests:</label>
-                      <input type="text" class="form-control" id="special">
+                    <label for="datepicker" class="col-form-label">Pick Up Date and Time</label>
+                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="datepicker"/>
+                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="checkbox">
-                      <label for="esign" class="col-form-label">Email notification subscription</label>
-                      <label><input type="checkbox" id="esign">Yes, I'd like to subscribe to our monthly email newsletter.</label>
-                </div>
+                <script type="text/javascript">
+                  $(function () {
+                      $('#datetimepicker1').datetimepicker();
+                  });
+                </script>
+
             </form>
           </div>
           <div class="modal-footer">
@@ -186,8 +189,7 @@
     
     <script>
         function modalfunc(){
-          var fname = document.forms["modalform"]["firstname"];               
-          var lname = document.forms["modalform"]["lastname"];
+          var fname = document.forms["modalform"]["fullname"];               
           var street = document.forms["modalform"]["street"]; 
           var states = document.forms["modalform"]["state"];       
           var phone = document.forms["modalform"]["phonenum"]; 
@@ -195,20 +197,11 @@
           var email =  document.forms["modalform"]["email"];  
           var zip = document.forms["modalform"]["zip"];
           var list = document.forms["modalform"]["list"];
-          var special = document.forms["modalform"]["special"];
-          var notification = document.forms["modalform"]["esign"]; 
-          var pick = document.forms["modalform"]["pickup"];     
+          var datetime = document.forms["modalform"]["datepicker"]     
      
           if (fname.value == "")                                  
           { 
-              window.alert("Please enter your first name."); 
-              name.focus(); 
-              return false; 
-          } 
-        
-          if (lname.value == "")                               
-          { 
-              window.alert("Please enter your last name."); 
+              window.alert("Please enter your fullname."); 
               name.focus(); 
               return false; 
           } 
@@ -279,9 +272,22 @@
               phone.focus(); 
               return false; 
           } 
+
+          if (list.value == "")
+          {
+              window.alert("Please enter your quantity."); 
+              phone.focus(); 
+              return false; 
+          }
+
+          if (datetime.value == "")
+          {
+              window.alert("Please enter pick up date and time."); 
+              phone.focus(); 
+              return false; 
+          }
           
           fname.value = "";
-          lname.value = "";
           street.value = "";
           states.value = "";
           phone.value = "";
@@ -290,9 +296,7 @@
           zip.value = "";
           phone.value = "";
           list.value = "";
-          special.value = "";
-          notification.checked = false;
-          pick.value = "";
+          datetime.value = "";
           alert("Message Send")
           return true;
         }
@@ -656,7 +660,7 @@
 
               <div class="form-group row">
                 <div class="col-md-6">
-                    <input onclick="myfunc()" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Submit">
+                    <button onclick="myfunc()" class="btn btn-primary py-3 px-5 btn-block btn-pill"><span>Submit</span></a>
                 </div>
               </div>
 
@@ -667,27 +671,28 @@
     </div>
     <script>
       function myfunc(){
-        var fname = document.forms["RegForm"]["First"];               
-        var lname = document.forms["RegForm"]["Last"];    
+        var firstname = document.forms["RegForm"]["First"];               
+        var lastname = document.forms["RegForm"]["Last"];    
         var phone = document.forms["RegForm"]["Number"];  
         var email =  document.forms["RegForm"]["mail"];  
         var position = document.forms["RegForm"]["position"];  
    
-        if (fname.value == "")                                  
+        if (firstname.value == "")                                  
         { 
             window.alert("Please enter your first name."); 
             name.focus(); 
             return false; 
         } 
       
-        if (lname.value == "")                               
+        if (lastname.value == "")                               
         { 
             window.alert("Please enter your last name."); 
             name.focus(); 
             return false; 
         } 
         
-        var phonenumber = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        var phonenumber =/^\d{10}$/;
+        var phonenumber2 = /^\d{11}$/;
         if (phone.value == "")                           
         { 
             window.alert("Please enter your phone number."); 
@@ -695,8 +700,8 @@
             return false; 
         } 
 
-        if (phone.value.match(phonenumber)){
-          return true;
+        if (phone.value.match(phonenumber) || phone.value.match(phonenumber2)){
+          
         }else{
           window.alert("Please enter a valid phone numner.");
           phone.focus();
@@ -730,6 +735,11 @@
             position.focus(); 
             return false; 
         } 
+        firstname.value = "";
+        lastname.value = "";
+        phone.value = "";
+        email.value = "";
+        position.value = "";
         alert("Message Send")
         return true;
       }
